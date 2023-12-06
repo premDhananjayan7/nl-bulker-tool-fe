@@ -4,16 +4,15 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Button,
   createTheme,
   ThemeProvider,
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import QuizIcon from "@mui/icons-material/Quiz";
 import NewspaperRoundedIcon from "@mui/icons-material/NewspaperRounded";
-import DataObjectTwoToneIcon from "@mui/icons-material/DataObjectTwoTone";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import Tooltip from "@mui/material/Tooltip";
 
 const Header = () => {
   const theme = createTheme({
@@ -53,12 +52,29 @@ const Header = () => {
           >
             Bulker - NL Analytics
           </Typography>
-          <GitHubIcon style={{ padding: "0 10px 0 10px" }} color="secondary">
-            GitHub
-          </GitHubIcon>
-          <QuizIcon style={{ padding: "0 10px 0 10px" }} color="secondary">
-            GitHub
-          </QuizIcon>
+
+          <Tooltip title="GitHub">
+            <IconButton
+              href="https://github.com/premDhananjayan7"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="secondary"
+            >
+              <GitHubIcon />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="FAQ">
+            <IconButton
+              href="/FAQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="secondary"
+            >
+              <QuizIcon />
+            </IconButton>
+          </Tooltip>
+
         </Toolbar>
       </AppBar>
     </ThemeProvider>
