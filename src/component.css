@@ -1,11 +1,11 @@
 /* Base styles */
 body {
-  font-family: "Archivo", sans-serif;
-  /* background-color: #011627; */
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Center align the content */
 .textCentered {
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,42 +21,51 @@ body {
 
 /* Button styles */
 .actionButton {
-  font-family: "Archivo", sans-serif;
-  font-size: 13px;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 11px !important;
   /* width: 140px; */
   padding: 10px 15px;
   margin: 5px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  background-color: #81c5bb;
-  color: #011627;
+  background-color: var(--button-color) !important;
+  color: var(--button-text) !important;
   transition: background-color 0.3s ease;
 }
 
+.table1 {
+  max-width: 500px;
+  align-items: center;
+  border-spacing: 10px;
+}
+
 .actionButton:hover {
-  background-color: #011627;
-  color: #c19ad8;
-  box-shadow: 0 0 15px #c19ad8;
+  background-color: var(--button-hover) !important;
+  color: var(--button-hover-text) !important;
+  box-shadow: 0 0 5px #ecf87f !important;
 }
 
 /* Input box styles */
 .inputBox {
   font-family: "JetBrains Mono", sans-serif;
   font-size: 16px;
-  padding: 10px;
-  margin: 5px;
+  padding: 8px;
+  margin-bottom: 5px;
   border: 1px solid #ccc;
-  border-color: #c19ad8;
+  background-color: var(--input-box);
+  border-color: var(--input-box);
+  color: var(--input-box-text);
   border-radius: 10px;
-  width: 100%; /* Adjust the width to fill the container */
+  width: 100%;
+  max-width: 250px;
   box-sizing: border-box;
   text-align: center;
 }
 
 .inputBox:focus {
   outline: none;
-  box-shadow: 0 0 10px #c19ad8;
+  box-shadow: 0 0 5px #ecf87f;
 }
 
 /* Container styles */
@@ -64,19 +73,24 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh; /* Adjust the height as needed */
+  min-height: 87vh; /* Adjust the height as needed */
 }
 
 /* Box containing the form */
 .box {
-  background-color: white;
+  background-color: var(--box-bg-color);
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 0 20px #011627;
+  box-shadow: 0 0 30px var(--foreground-color);
   width: 90%; /* Responsive width */
-  max-width: 900px; /* Maximum width for larger screens */
-  overflow: auto; /* Enable scrolling when content exceeds max-height */
+  max-width: 1200px; /* Maximum width for larger screens */
+  max-height: 690px;
+  overflow-y: scroll;
+}
+
+.box::-webkit-scrollbar {
+  display: none;
 }
 
 /* Additional styling */
@@ -97,24 +111,24 @@ body {
   border: 1px solid #ccc;
   border-radius: 20px;
   padding: 10px;
-  background-color: #011627;
+  background-color: var(--jsonbox-bg-color);
   max-height: 100%; /* Responsive max-height */
   overflow: auto; /* Enable scrolling when content exceeds max-height */
   margin-top: 20px;
   margin-left: 20px; /* Added margin */
   flex: 1; /* Allow the container to fill available space */
-  box-shadow: 0 0 10px #81c5bb;
+  box-shadow: 0 0 15px var(--foreground-color);
 }
 
 /* Custom scrollbar */
 .newslettersContainer::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 .newslettersContainer::-webkit-scrollbar-thumb {
-  background-color: #c19ad8;
+  background-color: var(--foreground-color);
   border-radius: 50px;
-  border: 3px solid #c19ad8;
+  border: 3px solid var(--foreground-color);
 }
 
 .json-view {
@@ -122,8 +136,14 @@ body {
   font-family: "JetBrains Mono";
 }
 
+.expand {
+  color: var(--expand);
+}
+
+
 h2 {
-  font-size: 19px;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 15.5px;
 }
 
 .responseText {
@@ -134,19 +154,99 @@ h2 {
 
 .toast-success {
   font-family: "JetBrains Mono";
-  color: #81c5bb;
+  color: #f0eb9d;
   font-size: 15px;
 }
 
 .toast-error {
   font-family: "JetBrains Mono";
-  color: #c19ad8;
+  color: red;
   font-size: 15px;
+}
+
+.headerIcon:hover {
+  color: #81b622;
+}
+
+.headerRightIcons:hover {
+  color: #81b622;
+}
+
+.inputContainer {
+  padding: 10px;
+  align-items: center !important;
+  width: 100%; /* Adjust this max-width as needed */
+  margin: 0 auto;
+}
+
+.inputContainerID {
+  /* max-width: 1000px; */
+  width: 100%; /* Adjust this max-width as needed */
+  margin: 0 auto;
+}
+
+.actionButtonID {
+  /* font-family: "Montserrat", sans-serif !important;
+  font-size: 10.5px !important; */
+  /* width: 140px; */
+  padding: 8px;
+  margin-left: 20px;
+  border: none;
+  border-radius: 17px;
+  cursor: pointer;
+  background-color: #81c5bb;
+  color: #011627;
+  transition: background-color 0.3s ease;
+}
+
+.inputBoxID {
+  font-family: "JetBrains Mono", sans-serif;
+  font-size: 16px;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-color: #c19ad8;
+  border-radius: 10px;
+  max-width: 300px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.dividerStyle {
+  color: var(--expand) !important;
+  max-width: 280px;
+  width: 100%;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin: 0 auto; /* Center align the Divider */
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 867px) {
+  .dividerStyle {
+    width: 200px; /* Adjust width for smaller screens */
+  }
+  /* Adjust input container width for responsiveness */
+  .inputContainer {
+    max-width: 200px; /* Adjust max-width for smaller screens */
+  }
+  .actionButton {
+    max-width: 100%; /* Adjust for smaller screens */
+  }
+  .accordionContainer {
+    max-width: 240px !important;
+  }
+  .dividerStyle {
+    width: 200px;
+  }
 }
 
 /* Responsive media query for smaller screens */
 @media screen and (max-width: 600px) {
   .box {
+    height: 60%;
     width: 90%; /* Adjust for smaller screens */
     max-width: 90%; /* Max width for smaller screens */
   }
@@ -154,4 +254,150 @@ h2 {
     height: 480px; /* Adjust height for smaller screens */
     max-height: 90%; /* Max height for smaller screens */
   }
+  .dividerStyle {
+    width: 80px; /* Adjust width for smaller screens */
+  }
+  /* Adjust input container width for responsiveness */
+  .inputContainer {
+    max-width: 200px; /* Adjust max-width for smaller screens */
+  }
+
+  .actionButton {
+    max-width: 100%; /* Adjust for smaller screens */
+  }
 }
+
+.accordionContainer {
+  background-color: var(--accordion-box-color) !important;
+  color: var(--accordion-color) !important;
+  max-width: 320px;
+  width: 100%;
+}
+
+/* Styles for AccordionSummary */
+.accordionSummary {
+  text-align: center;
+  background-color: #81c5bb; /* Change background color as needed */
+  border-bottom: 1px solid #ddd; /* Add a bottom border for separation */
+  padding: 10px 15px; /* Adjust padding as needed */
+}
+
+/* Styles for AccordionDetails */
+.accordionDetails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; /* Adjust padding as needed */
+}
+
+/* Apply consistent styles to inputs and buttons inside AccordionDetails */
+.accordionDetails input,
+.accordionDetails button {
+  margin: 5px; /* Add margin between inputs/buttons */
+  /* Add other styles as needed */
+}
+
+.accordionTitle {
+  font-family: "Montserrat" !important;
+  font-size: 12px;
+}
+
+:root {
+  --background-color: #b9c8bc;
+  --foreground-color: #ecf87f;
+  --primary-text-color: #011627;
+  --secondary-text-color: ##81b622;
+  --toggle-bg: #f0eb9d;
+  --toggle-fg: #ffd000;
+  --box-bg-color: #ebebe8;
+  --jsonbox-bg-color: #3a6a59;
+  --accordion-box-color: #d1e2c4;
+  --accordion-color: #000000;
+  --button-color: #ded93e;
+  --button-hover: #2a1d09;
+  --button-text: #000000;
+  --button-hover-text: #ecf87f;
+  --input-box: #ffffff;
+  --input-box-text: #011627;
+  --expand: #000000;
+}
+
+[data-theme="dark"] {
+  --background-color: #31352E;
+  --box-bg-color: #000000;
+  --foreground-color: #81b622;
+  --primary-text-color: #ebebe8;
+  --secondary-text-color: ##94c973;
+  --toggle-bg: #778a35;
+  --toggle-fg: #3d550c;
+  --jsonbox-bg-color: #1e1403;
+  --accordion-box-color: #31352E;
+  --accordion-color: #ecf87f;
+  --button-color: #2a1d09;
+  --button-hover: #ded93e;
+  --button-text: #ecf87f;
+  --button-hover-text: #000000;
+  --input-box: #D1E2C4;
+  --expand: #ffffff;
+}
+
+.App {
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  transition: background-color 250ms ease-in-out;
+}
+
+
+
+/*FAQ Page Styling*/
+
+.faq-box {
+  background-color: var(--box-bg-color);
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px var(--foreground-color);
+  width: 90%; /* Responsive width */
+  max-width: 850px; /* Maximum width for larger screens */
+  max-height: 1200px;
+  overflow-y: scroll;
+}
+
+.faqAccordionContainer {
+  background-color: var(--accordion-box-color) !important;
+  color: var(--accordion-color) !important;
+  max-width: 850px;
+  width: 100%;
+}
+
+.faqAccordionTitle {
+  font-family: "JetBrains Mono" !important;
+  font-size: 17px !important;
+  padding: 20px 0 20px 0;
+}
+
+.faqAccordionQuestion {
+  font-family: "Montserrat" !important;
+  font-size: 16px !important;
+}
+
+.faqAccordionAnswer {
+  font-family: "Montserrat" !important;
+  font-size: 12px !important;
+}
+
+.faqAccordionList {
+  padding: 5px 15px 5px 25px;
+  line-height: 25px;
+}
+
+.faqDividerStyle {
+  color: var(--expand) !important;
+  max-width: 690px;
+  width: 100%;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin: 0 auto; /* Center align the Divider */
+}
+
