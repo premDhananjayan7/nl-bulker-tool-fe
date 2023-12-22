@@ -24,7 +24,7 @@ const Footer = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar color="primary" position="static" style={{ top: "auto", bottom: 0 }}>
+      <AppBar className="headerPrimary" position="static" style={{ top: "auto", bottom: 0 }}>
         <Toolbar>
           <Typography
             variant={isMobileScreen ? "body2" : "body1"}

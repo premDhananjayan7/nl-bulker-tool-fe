@@ -131,10 +131,6 @@ body {
   border: 3px solid var(--foreground-color);
 }
 
-.json-view {
-  font-size: 13px;
-  font-family: "JetBrains Mono";
-}
 
 .expand {
   color: var(--expand);
@@ -215,7 +211,7 @@ h2 {
 
 .dividerStyle {
   color: var(--expand) !important;
-  max-width: 280px;
+  max-width: 300px;
   width: 100%;
   align-items: center;
   padding-top: 12px;
@@ -270,7 +266,7 @@ h2 {
 .accordionContainer {
   background-color: var(--accordion-box-color) !important;
   color: var(--accordion-color) !important;
-  max-width: 320px;
+  max-width: 340px;
   width: 100%;
 }
 
@@ -314,12 +310,13 @@ h2 {
   --accordion-box-color: #d1e2c4;
   --accordion-color: #000000;
   --button-color: #ded93e;
-  --button-hover: #2a1d09;
+  --button-hover: #3a6a59;
   --button-text: #000000;
   --button-hover-text: #ecf87f;
   --input-box: #ffffff;
   --input-box-text: #011627;
   --expand: #000000;
+  --header: #2a1e09;
 }
 
 [data-theme="dark"] {
@@ -339,6 +336,7 @@ h2 {
   --button-hover-text: #000000;
   --input-box: #D1E2C4;
   --expand: #ffffff;
+  --header: #000000;
 }
 
 .App {
@@ -393,7 +391,7 @@ h2 {
 
 .faqDividerStyle {
   color: var(--expand) !important;
-  max-width: 690px;
+  max-width: 770px;
   width: 100%;
   align-items: center;
   padding-top: 12px;
@@ -401,3 +399,29 @@ h2 {
   margin: 0 auto; /* Center align the Divider */
 }
 
+ .logoIcon {
+  width: 30px;
+  padding-right: 10px;
+}
+
+/*Header styling*/
+
+.headerPrimary {
+  background-color: var(--header) !important;
+  color: #ffffff !important;
+}
+
+
+/*JSON Data Box styling*/
+
+.json-view {
+  font-size: 13px;
+  font-family: "JetBrains Mono";
+  color: #4d4d4d;
+  --json-property: #009033;
+  --json-index: #676dff;
+  --json-number: #676dff;
+  --json-string: #b2762e;
+  --json-boolean: #dc155e;
+  --json-null: #dc155e;
+}

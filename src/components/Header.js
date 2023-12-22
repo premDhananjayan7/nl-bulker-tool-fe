@@ -9,14 +9,25 @@ import {
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import QuizIcon from "@mui/icons-material/Quiz";
+import HomeIcon from "@mui/icons-material/Home";
 import NewspaperRoundedIcon from "@mui/icons-material/NewspaperRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Tooltip from "@mui/material/Tooltip";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
+import FaviconImage from "./bulker.png"; // Import your favicon image
 
 const Header = () => {
+  const location = useLocation();
+
+  const isHomePage = location.pathname === "/";
+  const icon = isHomePage ? <QuizIcon /> : <HomeIcon />;
+  const buttonLink = isHomePage ? "/faq" : "/";
+  const tooltipText = isHomePage ? "FAQ" : "Home";
+
+  const root = document.documentElement;
+const headerColor = getComputedStyle(root).getPropertyValue('--header').trim();
+
   const theme = createTheme({
     palette: {
       primary: {
@@ -34,12 +45,11 @@ const Header = () => {
     },
   });
 
-
   return (
     <ThemeProvider theme={theme}>
       <AppBar position="static">
-        <Toolbar>
-          <IconButton
+        <Toolbar className="headerPrimary">
+          {/* <IconButton
             href="/"
             edge="start"
             color="icon"
@@ -49,7 +59,10 @@ const Header = () => {
             <VisibilityIcon />
             <AddRoundedIcon />
             <NewspaperRoundedIcon />
-          </IconButton>
+          </IconButton> */}
+          <Link to="/">
+            <img src={FaviconImage} alt="Logo" className="logoIcon" href="/" />
+          </Link>
           <Typography
             variant="h6"
             style={{
@@ -61,7 +74,6 @@ const Header = () => {
           >
             Bulker - Analytics Tool
           </Typography>
-
 
           <Tooltip title="GitHub">
             <IconButton
@@ -75,13 +87,10 @@ const Header = () => {
             </IconButton>
           </Tooltip>
 
-          <Tooltip title="FAQ">
-            <Link to="/faq" style={{ textDecoration: "none" }}>
-              <IconButton
-                color="secondary"
-                className="headerRightIcons"
-              >
-                <QuizIcon />
+          <Tooltip title={tooltipText}>
+            <Link to={buttonLink} style={{ textDecoration: "none" }}>
+              <IconButton color="secondary" className="headerRightIcons">
+                {icon}
               </IconButton>
             </Link>
           </Tooltip>

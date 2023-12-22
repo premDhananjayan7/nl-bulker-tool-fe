@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../component.css"; // Import CSS file
 
-
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -29,6 +28,8 @@ import TextSnippetRoundedIcon from "@mui/icons-material/TextSnippetRounded";
 import QueryStatsOutlinedIcon from "@mui/icons-material/QueryStatsOutlined";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import ManageSearchIcon from "@mui/icons-material/ManageSearch";
+import PlagiarismIcon from "@mui/icons-material/Plagiarism";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const ActionComponent = () => {
@@ -39,6 +40,10 @@ const ActionComponent = () => {
 
   const [newsletterId, setNewsletterId] = useState("");
   const [distributionId, setDistributionId] = useState("");
+
+  const [searchID, setSearchID] = useState("");
+  const [searchData, setSearchData] = useState(null);
+  // const [error, setError] = useState(null);
 
   // const [reportId, setReportId] = useState("");
 
@@ -280,6 +285,58 @@ const ActionComponent = () => {
     }
   };
 
+  const handleGetSearchList = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3600/api/searchList`);
+
+      // Logging the response for Get Report Analytics
+      console.log("Search List:", response.data);
+
+      // Set report data in state to be displayed in JSON data box
+      setNewsletters([response.data]);
+      setShowData(true);
+      localStorage.setItem(
+        "newslettersData",
+        JSON.stringify(response.data || [])
+      );
+    } catch (error) {
+      console.error("Error fetching search list", error);
+    }
+  };
+
+  const handleSearch = async () => {
+    try {
+      // Append search ID to the backend endpoint URL
+      const response = await axios.post(
+        `http://localhost:3600/api/sendSearchID/${searchID}`
+      );
+
+      // Assuming the response.data contains the modified payload with search ID
+      const modifiedPayload = response.data;
+
+      // Send modified payload to backend to trigger the external API call
+      const searchDataResponse = await axios.post(
+        "http://localhost:3600/api/searchData",
+        modifiedPayload
+      );
+
+      // Assuming searchDataResponse.data holds the response from the external API
+      console.log("Received data from backend:", searchDataResponse.data);
+
+      // Process and set the received data in the frontend state
+      setNewsletters([searchDataResponse.data]);
+      setShowData(true);
+
+      // Save the received data to local storage
+      localStorage.setItem(
+        "newslettersData",
+        JSON.stringify(searchDataResponse.data || [])
+      );
+    } catch (error) {
+      console.error("Error fetching search data:", error);
+    }
+  };
+
   const handleDownloadCSV = () => {
     let displayedData = newsletters;
 
@@ -387,12 +444,12 @@ const ActionComponent = () => {
                   <Accordion className="accordionContainer">
                     <AccordionSummary
                       className="accordionSummary"
-                      expandIcon={<ExpandMoreIcon className="expand"/>}
+                      expandIcon={<ExpandMoreIcon className="expand" />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
                       <Typography className="accordionTitle">
-                        Enter Company ID:
+                        Perform Authorization
                       </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -401,7 +458,8 @@ const ActionComponent = () => {
                           className="inputBox"
                           type="text"
                           value={companyId}
-                          onChange={(e) => setCompanyId(e.target.value)} // Use setCompanyId here
+                          onChange={(e) => setCompanyId(e.target.value)}
+                          placeholder="Enter Company ID"
                         />
 
                         <Button
@@ -421,7 +479,7 @@ const ActionComponent = () => {
                   <Accordion className="accordionContainer">
                     <AccordionSummary
                       className="accordionSummary"
-                      expandIcon={<ExpandMoreIcon className="expand"/>}
+                      expandIcon={<ExpandMoreIcon className="expand" />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
@@ -471,7 +529,54 @@ const ActionComponent = () => {
                 <div>
                   <Accordion className="accordionContainer">
                     <AccordionSummary
-                      expandIcon={<ExpandMoreIcon className="expand"/>}
+                      expandIcon={<ExpandMoreIcon className="expand" />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography className="accordionTitle">
+                        Get Search Data
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <div className="textCentered">
+                        <tr>
+                          <input
+                            className="inputBox"
+                            type="text"
+                            value={searchID}
+                            onChange={(e) => setSearchID(e.target.value)}
+                            placeholder="Enter Search ID"
+                          />
+                          <td>
+                            <Button
+                              className="actionButton"
+                              variant="contained"
+                              onClick={handleGetSearchList}
+                              endIcon={<ManageSearchIcon />}
+                            >
+                              Search List
+                            </Button>
+                          </td>
+                          <td>
+                            <Button
+                              className="actionButton"
+                              variant="contained"
+                              onClick={handleSearch}
+                              endIcon={<PlagiarismIcon />}
+                            >
+                              Get Search Data
+                            </Button>
+                          </td>
+                        </tr>
+                      </div>
+                    </AccordionDetails>
+                  </Accordion>
+                </div>
+                <Divider variant="middle" className="dividerStyle" /> <br />
+                <div>
+                  <Accordion className="accordionContainer">
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon className="expand" />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
@@ -519,7 +624,7 @@ const ActionComponent = () => {
                 <div>
                   <Accordion className="accordionContainer">
                     <AccordionSummary
-                      expandIcon={<ExpandMoreIcon className="expand"/>}
+                      expandIcon={<ExpandMoreIcon className="expand" />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
@@ -551,12 +656,12 @@ const ActionComponent = () => {
                 <div>
                   <Accordion className="accordionContainer">
                     <AccordionSummary
-                      expandIcon={<ExpandMoreIcon className="expand"/>}
+                      expandIcon={<ExpandMoreIcon className="expand" />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
                       <Typography className="accordionTitle">
-                        Perform Bulk Action
+                        Perform Bulk Action (NL)
                       </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -609,6 +714,18 @@ const ActionComponent = () => {
                     theme="a11y"
                     src={newsletters}
                     collapsed={false}
+                    collapseStringMode="directly"
+                    collapseStringsAfterLength={25000}
+                    //                   editable
+                    // onAdd={params => {
+                    //   console.log('[jv onAdd]', params)
+                    // }}
+                    // onEdit={params => {
+                    //   console.log('[jv onEdit]', params)
+                    // }}
+                    // onDelete={params => {
+                    //   console.log('[jv onDelete]', params)
+                    // }}
                   />
                 </div>
                 <br />

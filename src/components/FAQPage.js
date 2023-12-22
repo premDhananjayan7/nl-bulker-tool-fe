@@ -20,7 +20,6 @@ const FAQPage = () => {
             Frequently Asked Questions (FAQ)
           </Typography>
           <br />
-          {/* <Divider style={{ width: "100%", marginBottom: "20px" }} /> */}
           <Accordion className="faqAccordionContainer">
             <AccordionSummary
               expandIcon={<ExpandMoreIcon className="expand" />}
@@ -34,7 +33,28 @@ const FAQPage = () => {
             </AccordionDetails>
           </Accordion>
           <Divider variant="middle" className="faqDividerStyle" /> <br />
-          {/* Add more Accordion items for other FAQs */}
+
+          <Accordion className="faqAccordionContainer">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon className="expand" />}
+            >
+              <Typography className="faqAccordionQuestion">How to use Bulker?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="faqAccordionAnswer">
+                <ul className="faqAccordionList">
+                  <li>
+                Grab the Company ID of the required opportunity, and click on Authorize to become a temporary member of that company, after which you can get the required details from the user data displayed, or through other functionalities available.
+                </li>
+                <li>
+                  Ensure the toast notification says that "Authorization successful" before proceeding with using the tool.
+                </li>
+                </ul>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Divider variant="middle" className="faqDividerStyle" /> <br />
+
           <Accordion className="faqAccordionContainer">
             <AccordionSummary
               expandIcon={<ExpandMoreIcon className="expand" />}
@@ -68,8 +88,6 @@ const FAQPage = () => {
             </AccordionDetails>
           </Accordion>
           <br />
-          {/* Add more Accordion items for other FAQs */}
-          {/* <Divider style={{ width: "100%", marginBottom: "20px" }} /> */}
         </Container>
       </div>
     </div>
